@@ -1,43 +1,43 @@
 # Build stage
 FROM golang:1.21-alpine AS builder
 
-# Install build dependencies
-RUN apk add --no-cache git
+# Set Go proxy
+ENV GOPROXY=https://goproxy.io,https://proxy.golang.org,direct
+ENV CGO_ENABLED=0
 
-# Set working directory
+# Install dependencies
+RUN apk add --no-cache git ca-certificates
+
 WORKDIR /app
 
-# Copy go mod file
-COPY go.mod ./
+# Copy go files
+COPY go.mod go.sum ./
 
-# Download dependencies (this will create go.sum automatically)
+# Download dependencies
 RUN go mod download
 
-# Copy source code
+# Copy all source code
 COPY . .
 
-# Build application
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd/main.go
+# Build
+RUN go build -ldflags="-w -s" -o main ./cmd/main.go
 
 # Runtime stage
 FROM alpine:latest
 
-# Install ca-certificates for HTTPS
 RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-# Copy binary from builder
+# Copy binary
 COPY --from=builder /app/main .
 
-# Copy .env file
-COPY --from=builder /app/.env .
+# Copy .env (kalau ada, kalau tidak ada skip saja)
+COPY --from=builder /app/.env .env
 
-# Create directories for uploads and logs
+# Create directories
 RUN mkdir -p uploads logs
 
-# Expose port
 EXPOSE 8080
 
-# Run application
 CMD ["./main"]
