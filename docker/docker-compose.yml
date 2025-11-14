@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: notes-postgres
+    environment:
+      POSTGRES_USER: notesuser
+      POSTGRES_PASSWORD: notespass
+      POSTGRES_DB: notes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - notes-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U notesuser -d notes_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Backend API (Golang Fiber)
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: notes-backend
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://notesuser:notespass@postgres:5432/notes_db?sslmode=disable
+      JWT_SECRET: mysupersecretkey123
+      PORT: 8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - notes-network
+    volumes:
+      - backend_uploads:/root/uploads
+      - backend_logs:/root/logs
+    restart: unless-stopped
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: notes-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - notes-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backend_uploads:
+  backend_logs:
+
+networks:
+  notes-network:
+    driver: bridge

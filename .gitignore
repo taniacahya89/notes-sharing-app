@@ -1,0 +1,41 @@
+# Environment variables - JANGAN UPLOAD!
+.env
+.env.local
+.env*.local
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Uploads (data user)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+backend/logs/*
+!backend/logs/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+*.exe
+*.test
+*.out
+go.work
+
+# Docker
+postgres_data/
