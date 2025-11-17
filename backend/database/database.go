@@ -61,14 +61,14 @@ func seedData() {
 	// Create dummy users
 	users := []models.User{
 		{
-			Name:     "John Doe",
-			Email:    "john@example.com",
-			Password: "$2a$10$5JZKqx5JqZKqx5JqZKqx5OQKqx5JqZKqx5JqZKqx5JqZKqx5JqZK", // "password123"
+			Name:     "Tania",
+			Email:    "tania@gmail.com",
+			Password: "$2a$12$8fJ14OmwekyKZhbMQ52MiOUxjZ5KRW92uE/peQ4MUP/Y3HWFeLog.",
 		},
 		{
-			Name:     "Jane Smith",
-			Email:    "jane@example.com",
-			Password: "$2a$10$5JZKqx5JqZKqx5JqZKqx5OQKqx5JqZKqx5JqZKqx5JqZKqx5JqZK", // "password123"
+			Name:     "cahya",
+			Email:    "cahya@gmail.com",
+			Password: "$2a$12$08c0F8insbCFWYTzEBcWq.qaolWtmJ2inkCVB7zd1MepSZ4W0ND4W",
 		},
 	}
 
