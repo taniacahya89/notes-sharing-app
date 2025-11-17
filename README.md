@@ -242,12 +242,37 @@ npm run build
 - **Database**: PostgreSQL 15
 - **DevOps**: Docker, Docker Compose
 
-📸 Screenshots
+## 📸 Screenshots
 
-![Register Page](screenshots/register.png)
-![Login Page](screenshots/login.png)
-![Notes Page](screenshots/notes.png)
-![Add Note Page](screenshots/add-note.png)
-![Delete Note Page](screenshots/delete-note.png)
-![Add Image Page](screenshots/add-image.png)
+![Register Page](image/register.png)
+![Login Page](image/login.png)
+![Notes Page](image/notes.png)
+![Add Note Page](image/add-note.png)
+![Delete Note Page](image/delete-note.png)
+![Add Image Page](image/add-image.png)
+
+
+## 📄 License
+MIT License - Feel free to use this project for learning purposes.
+
+
+## 👨‍💻 Author
+Tania Cahya Widyasmara
+
+GitHub: @taniacahya89
+Repository: notes-sharing-app
+
+
+## 🙏 Acknowledgments
+Project ini dibuat sebagai technical test untuk mendemonstrasikan kemampuan:
+
+Full-stack development (Go + Next.js)
+RESTful API design
+JWT Authentication
+Database design & management
+Docker containerization
+Logging & monitoring
+
+Created with ❤️ for learning and demonstration purposes.
+
 
