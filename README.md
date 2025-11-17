@@ -242,10 +242,12 @@ npm run build
 - **Database**: PostgreSQL 15
 - **DevOps**: Docker, Docker Compose
 
-## 👨‍💻 Author
+📸 Screenshots
 
-Created as a learning project for Golang, Next.js, and Docker integration.
+![Register Page](screenshots/register.png)
+![Login Page](screenshots/login.png)
+![Notes Page](screenshots/notes.png)
+![Add Note Page](screenshots/add-note.png)
+![Delete Note Page](screenshots/delete-note.png)
+![Add Image Page](screenshots/add-image.png)
 
-## 📄 License
-
-MIT License - Feel free to use this project for learning purposes.
